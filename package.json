@@ -1,0 +1,21 @@
+{
+  "name": "gz-template",
+  "version": "1.0.0",
+  "description": "```markdown\r gz‑template\r Template de repositório para a Trilha GZ – versionamento, revisão e segurança.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EnzoZaia/gz-template.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/EnzoZaia/gz-template/issues"
+  },
+  "homepage": "https://github.com/EnzoZaia/gz-template#readme"
+}
