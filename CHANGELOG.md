@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.0.0](https://github.com/EnzoZaia/gz-template/compare/v1.0.0...v2.0.0) (2026-11-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* endpoint /v1 removed
+
+### Features
+
+* adicionar sistema de login ([ea3a5b8](https://github.com/EnzoZaia/gz-template/commit/ea3a5b86d5eaef089cd626b7577cc1a71b7590d5))
+* overhaul API ([e21a9c6](https://github.com/EnzoZaia/gz-template/commit/e21a9c619ea02cf3e1940b9071fb729c9cfb35b6))
+
 ## 1.0.0 (2026-11-13)
 
 

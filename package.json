@@ -1,6 +1,6 @@
 {
   "name": "gz-template",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "```markdown\r gz‑template\r Template de repositório para a Trilha GZ – versionamento, revisão e segurança.",
   "main": "index.js",
   "scripts": {
