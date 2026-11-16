@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/EnzoZaia/gz-template/compare/v2.1.0...v2.2.0) (2026-11-16)
+
+
+### Features
+
+* fechar semana 1 – revisão e merge ([6ce85b2](https://github.com/EnzoZaia/gz-template/commit/6ce85b299ba168d6a2506bf978e7e307ab101eb2))
+
 ## [2.1.0](https://github.com/EnzoZaia/gz-template/compare/v2.0.0...v2.1.0) (2026-11-16)
 
 
