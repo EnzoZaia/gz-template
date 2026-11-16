@@ -49,4 +49,4 @@ Permission is hereby granted, free of charge, to any person obtaining a copy...
 - Previne que segredos vazem para o repositório.
 - Serve como ponto de partida para os próximos projetos (Docker, Supabase, observabilidade, etc.).
 
-```
+```Teste direto
