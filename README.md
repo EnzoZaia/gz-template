@@ -50,3 +50,5 @@ Permission is hereby granted, free of charge, to any person obtaining a copy...
 - Serve como ponto de partida para os próximos projetos (Docker, Supabase, observabilidade, etc.).
 
 ```Teste direto
+
+- Semana 1 concluída: proteção de branch, Gitleaks e release-please configurados.
