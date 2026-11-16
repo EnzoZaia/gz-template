@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/EnzoZaia/gz-template/compare/v2.0.0...v2.1.0) (2026-11-16)
+
+
+### Features
+
+* adiciona arquivo de teste para validar automacao ([dfc0757](https://github.com/EnzoZaia/gz-template/commit/dfc07571f13ed8216bc8af46a09aab6e4a56b295))
+
 ## [2.0.0](https://github.com/EnzoZaia/gz-template/compare/v1.0.0...v2.0.0) (2026-11-13)
 
 
