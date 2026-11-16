@@ -50,3 +50,6 @@ Permission is hereby granted, free of charge, to any person obtaining a copy...
 - Serve como ponto de partida para os próximos projetos (Docker, Supabase, observabilidade, etc.).
 
 ```Teste direto
+-----BEGIN RSA PRIVATE KEY-----
+MIIEowIBAAKCAQEA0Z3VS5JJcds3xfn/ygWyF8PbnGy0AHB7MhgWD+e36/32+v2+
+-----END RSA PRIVATE KEY-----
