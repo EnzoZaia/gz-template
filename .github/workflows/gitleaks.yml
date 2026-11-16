@@ -13,4 +13,4 @@ jobs:
           fetch-depth: 0
       - name: Run Gitleaks
         run: |
-          docker run --rm -v ${{ github.workspace }}:/path zricethezav/gitleaks:latest detect --source="/path" --log-opts="origin/${{ github.base_ref }}..HEAD" -v
+          docker run --rm -v ${{ github.workspace }}:/path zricethezav/gitleaks:latest detect --source="/path" -v
