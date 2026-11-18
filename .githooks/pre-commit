@@ -1,0 +1,40 @@
+#!/bin/sh
+# Hook de pre-commit da GZ Software: bloqueia o commit se o gitleaks achar
+# segredo (senha, token, chave de API) nos arquivos que vão entrar no commit.
+#
+# Ativar uma vez por clone:   git config core.hooksPath .githooks
+# Falso positivo? Ajuste a allowlist em .gitleaks.toml (nunca use --no-verify
+# para passar um segredo de verdade).
+
+GITLEAKS="$(command -v gitleaks 2>/dev/null)"
+
+# No Windows, o winget instala fora do PATH do Git Bash até reiniciar o terminal.
+if [ -z "$GITLEAKS" ] && [ -n "$LOCALAPPDATA" ] && command -v cygpath >/dev/null 2>&1; then
+  base="$(cygpath -u "$LOCALAPPDATA")/Microsoft/WinGet"
+  for candidato in "$base/Links/gitleaks.exe" "$base"/Packages/Gitleaks.Gitleaks_*/gitleaks.exe; do
+    if [ -f "$candidato" ]; then GITLEAKS="$candidato"; break; fi
+  done
+fi
+
+if [ -z "$GITLEAKS" ]; then
+  echo "pre-commit: gitleaks não encontrado. Commit bloqueado por segurança." >&2
+  echo "Instale com:  winget install --id Gitleaks.Gitleaks -e   (macOS: brew install gitleaks)" >&2
+  exit 1
+fi
+
+raiz="$(git rev-parse --show-toplevel)"
+
+# "gitleaks git --pre-commit --staged" é o nome atual de "gitleaks protect --staged"
+# (o "protect" ficou obsoleto na v8.19). Olha só o que está no stage.
+"$GITLEAKS" git --pre-commit --staged --redact --no-banner \
+  --config "$raiz/.gitleaks.toml" "$raiz"
+status=$?
+
+if [ $status -ne 0 ]; then
+  echo "" >&2
+  echo "pre-commit: o gitleaks encontrou possível segredo (acima, com o valor mascarado)." >&2
+  echo "Tire o segredo do arquivo (use variável de ambiente / .env ignorado) e rode git add de novo." >&2
+  echo "Se for falso positivo, ajuste a allowlist em .gitleaks.toml." >&2
+  exit 1
+fi
+exit 0

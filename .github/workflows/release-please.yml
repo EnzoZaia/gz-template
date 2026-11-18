@@ -1,15 +1,24 @@
 name: release-please
+
+# Versionamento semântico automático (vMAIOR.MENOR.CORREÇÃO) a partir dos
+# Conventional Commits (feat:, fix:, feat!: ...). A cada push na main, abre ou
+# atualiza um PR "chore(main): release X.Y.Z" com o CHANGELOG. Quando esse PR é
+# mergeado, cria a tag vX.Y.Z e o Release no GitHub.
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
-  release:
+  release-please:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: google-github-actions/release-please-action@v3
+      - uses: googleapis/release-please-action@5c625bfb5d1ff62eadeeb3772007f7f66fdcf071 # v4.4.1
+        id: release
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          release-type: node
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+          target-branch: main

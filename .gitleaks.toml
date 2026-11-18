@@ -1,0 +1,44 @@
+# Configuração do gitleaks (hook local em .githooks/pre-commit e CI em .github/workflows/gitleaks.yml).
+# Usa as regras padrão do gitleaks e só libera falsos positivos conhecidos.
+# Para liberar UM achado antigo específico, prefira o arquivo .gitleaksignore
+# (uma "Fingerprint" por linha, copiada do relatório do gitleaks).
+
+title = "GZ Software"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Chaves públicas por natureza (vão para o navegador): Stripe/Mercado Pago pk_, Supabase sb_publishable_"
+regexTarget = "match"
+regexes = [
+  '''pk_(test|live)_[0-9A-Za-z]{10,}''',
+  '''sb_publishable_[0-9A-Za-z_-]{10,}''',
+  '''APP_USR-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}''',
+]
+
+[[allowlists]]
+description = "Senhas e chaves de mentira em testes e arquivos de exemplo (só a regra genérica; tokens reais de provedores continuam bloqueados)"
+targetRules = ["generic-api-key"]
+paths = [
+  '''(^|/)tests?/''',
+  '''(^|/)test_[^/]*\.py$''',
+  '''(^|/)tests?_[^/]*\.py$''',
+  '''(^|/)tests\.py$''',
+  '''(^|/)conftest\.py$''',
+  '''(^|/)settings_test\.py$''',
+  '''(^|/)factories\.py$''',
+  '''\.(test|spec)\.[cm]?[jt]sx?$''',
+  '''(^|/)\.env\.example$''',
+  '''(^|/)\.dev\.vars\.example$''',
+]
+
+[[allowlists]]
+description = "Arquivos gerados que não guardam segredo"
+paths = [
+  '''(^|/)package-lock\.json$''',
+  '''(^|/)pnpm-lock\.yaml$''',
+  '''(^|/)yarn\.lock$''',
+  '''(^|/)poetry\.lock$''',
+  '''(^|/)CHANGELOG\.md$''',
+]
