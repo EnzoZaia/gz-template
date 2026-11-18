@@ -1,7 +1,15 @@
 name: gitleaks
+
+# Procura segredos (senhas, tokens, chaves) em todo o histórico do repositório.
+# A mesma regra roda antes do commit no computador (.githooks/pre-commit).
 on:
+  push:
+    branches: [main, develop]
   pull_request:
-    branches: [main]
+    branches: [main, develop]
+
+permissions:
+  contents: read
 
 jobs:
   scan:
@@ -11,6 +19,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Run Gitleaks
+      - name: Rodar gitleaks (versão fixa)
         run: |
-          docker run --rm -v ${{ github.workspace }}:/path zricethezav/gitleaks:latest detect --source="/path" -v
+          docker run --rm \
+            -v "${{ github.workspace }}:/repo" \
+            -e GIT_CONFIG_COUNT=1 \
+            -e GIT_CONFIG_KEY_0=safe.directory \
+            -e GIT_CONFIG_VALUE_0='*' \
+            zricethezav/gitleaks:v8.30.1 \
+            git /repo --config /repo/.gitleaks.toml --redact --verbose --no-banner
